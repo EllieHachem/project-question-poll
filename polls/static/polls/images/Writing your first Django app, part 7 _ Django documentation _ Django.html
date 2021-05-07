@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)https://docs.djangoproject.com/en/3.2/intro/tutorial07/ -->
+<html lang="en" class=" mdzr-js mdzr-borderradius mdzr-boxshadow mdzr-cssanimations mdzr-svg"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ROBOTS" content="ALL">
+    <meta name="MSSmartTagsPreventParsing" content="true">
+    <meta name="Copyright" content="Django Software Foundation">
+    <meta name="keywords" content="Python, Django, framework, open-source">
+    <meta name="description" content="">
+
+    
+  
+    
+      
+    
+  
+  <link rel="canonical" href="https://docs.djangoproject.com/en/3.2/intro/tutorial07/">
+  
+    
+      
+    
+    <link rel="alternate" hreflang="el" href="https://docs.djangoproject.com/el/3.2/intro/tutorial07/">
+  
+    
+      
+    
+    <link rel="alternate" hreflang="en" href="https://docs.djangoproject.com/en/3.2/intro/tutorial07/">
+  
+    
+      
+    
+    <link rel="alternate" hreflang="es" href="https://docs.djangoproject.com/es/3.2/intro/tutorial07/">
+  
+    
+      
+    
+    <link rel="alternate" hreflang="fr" href="https://docs.djangoproject.com/fr/3.2/intro/tutorial07/">
+  
+    
+      
+    
+    <link rel="alternate" hreflang="id" href="https://docs.djangoproject.com/id/3.2/intro/tutorial07/">
+  
+    
+      
+    
+    <link rel="alternate" hreflang="ja" href="https://docs.djangoproject.com/ja/3.2/intro/tutorial07/">
+  
+    
+      
+    
+    <link rel="alternate" hreflang="ko" href="https://docs.djangoproject.com/ko/3.2/intro/tutorial07/">
+  
+    
+      
+    
+    <link rel="alternate" hreflang="pl" href="https://docs.djangoproject.com/pl/3.2/intro/tutorial07/">
+  
+    
+      
+    
+    <link rel="alternate" hreflang="pt-br" href="https://docs.djangoproject.com/pt-br/3.2/intro/tutorial07/">
+  
+    
+      
+    
+    <link rel="alternate" hreflang="zh-hans" href="https://docs.djangoproject.com/zh-hans/3.2/intro/tutorial07/">
+  
+
+  <link rel="search" type="application/opensearchdescription+xml" href="https://docs.djangoproject.com/en/3.2/search/description/" title="Django documentation">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="https://static.djangoproject.com/img/icon-touch.e4872c4da341.png">
+    <link rel="icon" sizes="192x192" href="https://static.djangoproject.com/img/icon-touch.e4872c4da341.png">
+    <link rel="shortcut icon" href="https://static.djangoproject.com/img/favicon.6dbf28c0650e.ico">
+    <meta name="msapplication-TileColor" content="#113228">
+    <meta name="msapplication-TileImage" content="https://static.djangoproject.com/img/icon-tile.b01ac0ef9f67.png">
+
+    <title>Writing your first Django app, part 7 | Django documentation | Django</title>
+
+    <link rel="stylesheet" href="./Writing your first Django app, part 7 _ Django documentation _ Django_files/output.454f07558429.css">
+    <script src="./Writing your first Django app, part 7 _ Django documentation _ Django_files/webfontloader.e75218f5f090.js.download"></script>
+    <link rel="stylesheet" href="./Writing your first Django app, part 7 _ Django documentation _ Django_files/css"><script>
+    WebFont.load({
+      custom: {
+        families: ['FontAwesome', 'Fira+Mono'],
+      },
+      google: {
+        families: ['Roboto:400italic,700italic,300,700,400:latin'
+        ]
+      },
+      classes: false,
+      events: false,
+      timeout: 1000
+    });
+    </script>
+    <script src="./Writing your first Django app, part 7 _ Django documentation _ Django_files/modernizr.3b36762e418a.js.download"></script>
+    
+  <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="main.2f2c378dba28" src="./Writing your first Django app, part 7 _ Django documentation _ Django_files/main.2f2c378dba28.js.download"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="mod/mobile-menu" src="./Writing your first Django app, part 7 _ Django documentation _ Django_files/mobile-menu.841726ee903a.js.download"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="mod/version-switcher" src="./Writing your first Django app, part 7 _ Django documentation _ Django_files/version-switcher.c28bb83972bb.js.download"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="mod/search-key" src="./Writing your first Django app, part 7 _ Django documentation _ Django_files/search-key.f3c0a6fcfedd.js.download"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="mod/clippify" src="./Writing your first Django app, part 7 _ Django documentation _ Django_files/clippify.js.download"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="mod/console-tabs" src="./Writing your first Django app, part 7 _ Django documentation _ Django_files/console-tabs.70ce882faaf3.js.download"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="clipboard" src="./Writing your first Django app, part 7 _ Django documentation _ Django_files/clipboard.min.bd70fd596a23.js.download"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jquery" src="./Writing your first Django app, part 7 _ Django documentation _ Django_files/jquery.min.87e69028f78d.js.download"></script></head>
+
+  <body id="generic" class="">
+
+    <div role="banner" id="top">
+  <div class="container">
+    <a class="logo" href="https://www.djangoproject.com/">Django</a>
+    <p class="meta">The web framework for perfectionists with deadlines.</p>
+    <div class="menu-button"><i class="icon icon-reorder"></i><span>Menu</span></div><div role="navigation" class="nav-menu-on">
+      <ul>
+        <li>
+          <a href="https://www.djangoproject.com/start/overview/">Overview</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/download/">Download</a>
+        </li>
+        <li class="active">
+          <a href="https://docs.djangoproject.com/">Documentation</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/weblog/">News</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/community/">Community</a>
+        </li>
+        <li>
+          <a href="https://github.com/django/django" target="_blank" rel="noopener">Code</a>
+        </li>
+        <li>
+          <a href="https://code.djangoproject.com/">Issues</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/foundation/">About</a>
+        </li>
+        <li>
+          <a href="https://www.djangoproject.com/fundraising/">♥ Donate</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <div class="copy-banner">
+      <div class="container 
+container--flex container--flex--wrap--mobile
+">
+        
+<h1><a href="https://docs.djangoproject.com/en/3.2/">Documentation</a></h1>
+
+
+<form action="https://docs.djangoproject.com/en/3.2/search/" class="search form-input" role="search">
+  <label class="visuallyhidden" for="id_q">Search:</label>
+    <input type="search" name="q" placeholder="Search 3.2 documentation" id="id_q">
+
+    <button type="submit">
+      <i class="icon icon-search"></i>
+      <span class="visuallyhidden">Search</span>
+    </button>
+</form>
+
+
+      </div>
+    </div>
+    <div id="billboard"></div>
+
+    <div class="container sidebar-right">
+      <div role="main">
+
+        
+          
+        
+
+        
+<div id="version-switcher">
+  <ul id="faq-link">
+    <li class="current-link">
+      <a href="https://docs.djangoproject.com/en/3.2/faq/help/">
+        <span>Getting Help</span>
+      </a>
+    </li>
+  </ul>
+  <ul id="doc-languages" class="language-switcher">
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/el/3.2/intro/tutorial07/">el</a>
+  </li>
+  
+  
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/es/3.2/intro/tutorial07/">es</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/fr/3.2/intro/tutorial07/">fr</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/id/3.2/intro/tutorial07/">id</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ja/3.2/intro/tutorial07/">ja</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/ko/3.2/intro/tutorial07/">ko</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pl/3.2/intro/tutorial07/">pl</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/pt-br/3.2/intro/tutorial07/">pt-br</a>
+  </li>
+  
+  
+  
+  <li class="other">
+    
+      
+    
+    <a href="https://docs.djangoproject.com/zh-hans/3.2/intro/tutorial07/">zh-hans</a>
+  </li>
+  
+  
+    <li class="current" title="Click on the links on the left to switch to another language.">
+      <span>Language: <strong>en</strong></span>
+    </li>
+  </ul>
+
+  
+  <ul id="doc-versions" class="version-switcher">
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.10/intro/tutorial07/">1.10</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/1.11/intro/tutorial07/">1.11</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/2.0/intro/tutorial07/">2.0</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/2.1/intro/tutorial07/">2.1</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/2.2/intro/tutorial07/">2.2</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/3.0/intro/tutorial07/">3.0</a>
+    </li>
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/3.1/intro/tutorial07/">3.1</a>
+    </li>
+    
+    
+    
+    
+    
+    <li class="other">
+      
+        
+      
+      <a href="https://docs.djangoproject.com/en/dev/intro/tutorial07/">dev</a>
+    </li>
+    
+    
+    <li class="current" title="This document describes Django 3.2. Click on the links on the left to see other versions.">
+       <span>Documentation version:
+         <strong>3.2</strong>
+       </span>
+    </li>
+  </ul>
+</div>
+
+
+<div id="docs-content">
+<div class="section" id="s-writing-your-first-django-app-part-7">
+<span id="writing-your-first-django-app-part-7"></span><h1><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="0">Writing your first Django app, part 7</span><a class="headerlink" href="https://docs.djangoproject.com/en/3.2/intro/tutorial07/#writing-your-first-django-app-part-7" title="Permalink to this headline"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="0">¶</span></a></h1>
+<p>This tutorial begins where <a class="reference internal" href="https://docs.djangoproject.com/en/3.2/intro/tutorial06/"><span class="doc">Tutorial 6</span></a> left off. We’re
+continuing the Web-poll application and will focus on customizing Django’s
+automatically-generated admin site that we first explored in <a class="reference internal" href="https://docs.djangoproject.com/en/3.2/intro/tutorial02/"><span class="doc">Tutorial 2</span></a>.</p>
+<div class="admonition-where-to-get-help admonition">
+<p class="first admonition-title">Where to get help:</p>
+<p class="last">If you’re having trouble going through this tutorial, please head over to
+the <a class="reference internal" href="https://docs.djangoproject.com/en/3.2/faq/help/"><span class="doc">Getting Help</span></a> section of the FAQ.</p>
+</div>
+<div class="section" id="s-customize-the-admin-form">
+<span id="customize-the-admin-form"></span><h2><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="1">Customize the admin form</span><a class="headerlink" href="https://docs.djangoproject.com/en/3.2/intro/tutorial07/#customize-the-admin-form" title="Permalink to this headline">¶</a></h2>
+<p>By registering the <code class="docutils literal notranslate"><span class="pre">Question</span></code> model with <code class="docutils literal notranslate"><span class="pre">admin.site.register(Question)</span></code>,
+Django was able to construct a default form representation. Often, you’ll want
+to <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="2">customize how the admin form looks and works.</span> You’ll do this by telling
+Django the options you want when you register the object.</p>
+<p>Let’s see how this works by reordering the fields on the edit form. Replace
+the <code class="docutils literal notranslate"><span class="pre">admin.site.register(Question)</span></code> line with:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">polls/admin.py</span><a class="headerlink" href="https://docs.djangoproject.com/en/3.2/intro/tutorial07/#id1" title="Permalink to this code">¶</a><span class="btn-clipboard" title="Copy this code"><i class="icon icon-clipboard"></i></span></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Question</span>
+
+
+<span class="k"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="3">class</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="3"> </span><span class="nc"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="3">QuestionAdmin</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="3">(</span></span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="3">admin</span></span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="3">.</span></span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="3">ModelAdmin</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="3">):</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="3">
+    </span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="3">fields</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="3"> </span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="3">=</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="3"> </span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="3">[</span></span><span class="s1"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="3">'pub_date'</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="3">,</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="3"> </span><span class="s1"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="3">'question_text'</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="3">]</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="3">
+
+</span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="3">admin</span></span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="3">.</span></span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="3">site</span></span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="3">.</span></span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="3">register</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="3">(</span></span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="3">Question</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="3">,</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="3"> </span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="3">QuestionAdmin</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="3">)</span></span>
+</pre></div>
+</div>
+</div>
+<p>You’ll <span class="highlighter--highlighted" style="background-color: magenta;" data-highlight-id="4">follow this pattern</span> – <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="5">create a model admin class</span>, <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="6">then pass it as the
+second argument</span> <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="7">to </span><code class="docutils literal notranslate"><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="7">admin.site.register()</span></span></code><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="7"> – any time you need to change the
+admin options for a model</span>.</p>
+<p>This particular change above makes the “Publication date” come before the
+“Question” field:</p>
+<img alt="Fields have been reordered" src="./Writing your first Django app, part 7 _ Django documentation _ Django_files/admin07.png">
+<p>This isn’t impressive with only two fields, but for admin forms with dozens
+of fields, choosing an intuitive order is an important usability detail.</p>
+<p>And speaking of forms with dozens of fields, you might want to <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="8">split the form
+up into fieldsets:</span></p><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="8">
+</span><div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">polls/admin.py</span><a class="headerlink" href="https://docs.djangoproject.com/en/3.2/intro/tutorial07/#id2" title="Permalink to this code">¶</a><span class="btn-clipboard" title="Copy this code"><i class="icon icon-clipboard"></i></span></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">from</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9"> </span><span class="nn"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">django.contrib</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9"> </span><span class="kn"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">import</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9"> </span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">admin</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">
+
+</span><span class="kn"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">from</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9"> </span><span class="nn"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">.models</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9"> </span><span class="kn"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">import</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9"> </span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">Question</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">
+
+
+</span><span class="k"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">class</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9"> </span><span class="nc"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">QuestionAdmin</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">(</span></span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">admin</span></span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">.</span></span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">ModelAdmin</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">):</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">
+    </span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">fieldsets</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9"> </span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">=</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9"> </span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">[</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">
+        </span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">(</span></span><span class="kc"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">None</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">,</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">               </span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">{</span></span><span class="s1"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">'fields'</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">:</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9"> </span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">[</span></span><span class="s1"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">'question_text'</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">]}),</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">
+        </span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">(</span></span><span class="s1"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">'Date information'</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">,</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9"> </span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">{</span></span><span class="s1"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">'fields'</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">:</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9"> </span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">[</span></span><span class="s1"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">'pub_date'</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">]}),</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">
+    </span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">]</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">
+
+</span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">admin</span></span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">.</span></span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">site</span></span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">.</span></span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">register</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">(</span></span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">Question</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">,</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9"> </span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">QuestionAdmin</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">)</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="9">
+</span></pre></div>
+</div>
+</div>
+<p>The first element of each tuple in
+<a class="reference internal" href="https://docs.djangoproject.com/en/3.2/ref/contrib/admin/#django.contrib.admin.ModelAdmin.fieldsets" title="django.contrib.admin.ModelAdmin.fieldsets"><code class="xref py py-attr docutils literal notranslate"><span class="pre">fieldsets</span></code></a> is the title of the fieldset.
+Here’s what our form looks like now:</p>
+<img alt="Form has fieldsets now" src="./Writing your first Django app, part 7 _ Django documentation _ Django_files/admin08t.png">
+</div>
+<div class="section" id="s-adding-related-objects">
+<span id="adding-related-objects"></span><h2><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="10">Adding related objects</span><a class="headerlink" href="https://docs.djangoproject.com/en/3.2/intro/tutorial07/#adding-related-objects" title="Permalink to this headline">¶</a></h2>
+<p>OK, we have our Question admin page, but a <code class="docutils literal notranslate"><span class="pre">Question</span></code> has multiple
+<code class="docutils literal notranslate"><span class="pre">Choice</span></code>s, and the admin page doesn’t display choices.</p>
+<p>Yet.</p>
+<p>There are two ways to solve this problem. The first is to <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="11">register </span><code class="docutils literal notranslate"><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="11">Choice</span></span></code><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="11">
+with the admin just as we did with </span><code class="docutils literal notranslate"><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="11">Question</span></span></code><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="11">:</span></p><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="11">
+</span><div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">polls/admin.py</span><a class="headerlink" href="https://docs.djangoproject.com/en/3.2/intro/tutorial07/#id3" title="Permalink to this code">¶</a><span class="btn-clipboard" title="Copy this code"><i class="icon icon-clipboard"></i></span></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+
+<span class="kn"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="13">from</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="13"> </span><span class="nn"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="13">.models</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="13"> </span><span class="kn"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="13">import</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="13"> </span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="13">Choice</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="13">,</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="13"> </span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="13">Question</span></span>
+<span class="c1"># ...</span>
+<span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="12">admin</span></span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="12">.</span></span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="12">site</span></span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="12">.</span></span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="12">register</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="12">(</span></span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="12">Choice</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="12">)</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="12">
+</span></pre></div>
+</div>
+</div>
+<p><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="14">Now “Choices</span>” is an <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="15">available </span>option i<span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="16">n the Django admi</span>n. The “Add choice” form
+looks like this:</p>
+<img alt="Choice admin page" src="./Writing your first Django app, part 7 _ Django documentation _ Django_files/admin09.png">
+<p>In that form, the “Question” field is a select box containing every question in the
+database. Django knows that a <a class="reference internal" href="https://docs.djangoproject.com/en/3.2/ref/models/fields/#django.db.models.ForeignKey" title="django.db.models.ForeignKey"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForeignKey</span></code></a> should be
+represented in the admin as a <code class="docutils literal notranslate"><span class="pre">&lt;select&gt;</span></code> box. In our case, only one question
+exists at this point.</p>
+<p>Also note the “Add Another” link next to “Question.” Every object with a
+<code class="docutils literal notranslate"><span class="pre">ForeignKey</span></code> relationship to another gets this for free. When you click “Add
+Another”, you’ll get a popup window with the “Add question” form. If you add a question
+in that window and click “Save”, Django will save the question to the database and
+dynamically add it as the selected choice on the “Add choice” form you’re
+looking at.</p>
+<p>But, really, this is an inefficient way of adding <code class="docutils literal notranslate"><span class="pre">Choice</span></code> objects to the system.
+It’d be better if you could add a bunch of Choices directly when you create the
+<code class="docutils literal notranslate"><span class="pre">Question</span></code> object. Let’s make that happen.</p>
+<p>Remove the <code class="docutils literal notranslate"><span class="pre">register()</span></code> call for the <code class="docutils literal notranslate"><span class="pre">Choice</span></code> model. Then, edit the <code class="docutils literal notranslate"><span class="pre">Question</span></code>
+registration <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="17">code</span> to read:</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">polls/admin.py</span><a class="headerlink" href="https://docs.djangoproject.com/en/3.2/intro/tutorial07/#id4" title="Permalink to this code">¶</a><span class="btn-clipboard" title="Copy this code"><i class="icon icon-clipboard"></i></span></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">from</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18"> </span><span class="nn"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">django.contrib</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18"> </span><span class="kn"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">import</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18"> </span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">admin</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">
+
+</span><span class="kn"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">from</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18"> </span><span class="nn"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">.models</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18"> </span><span class="kn"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">import</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18"> </span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">Choice</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">,</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18"> </span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">Question</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">
+
+
+</span><span class="k"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">class</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18"> </span><span class="nc"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">ChoiceInline</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">(</span></span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">admin</span></span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">.</span></span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">StackedInline</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">):</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">
+    </span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">model</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18"> </span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">=</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18"> </span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">Choice</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">
+    </span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">extra</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18"> </span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">=</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18"> </span><span class="mi"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">3</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">
+
+
+</span><span class="k"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">class</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18"> </span><span class="nc"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">QuestionAdmin</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">(</span></span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">admin</span></span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">.</span></span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">ModelAdmin</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">):</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">
+    </span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">fieldsets</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18"> </span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">=</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18"> </span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">[</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">
+        </span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">(</span></span><span class="kc"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">None</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">,</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">               </span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">{</span></span><span class="s1"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">'fields'</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">:</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18"> </span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">[</span></span><span class="s1"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">'question_text'</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">]}),</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">
+        </span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">(</span></span><span class="s1"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">'Date information'</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">,</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18"> </span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">{</span></span><span class="s1"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">'fields'</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">:</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18"> </span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">[</span></span><span class="s1"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">'pub_date'</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">],</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18"> </span><span class="s1"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">'classes'</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">:</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18"> </span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">[</span></span><span class="s1"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">'collapse'</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">]}),</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">
+    </span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">]</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">
+    </span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">inlines</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18"> </span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">=</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18"> </span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">[</span></span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">ChoiceInline</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">]</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">
+
+</span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">admin</span></span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">.</span></span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">site</span></span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">.</span></span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">register</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">(</span></span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">Question</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">,</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18"> </span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">QuestionAdmin</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">)</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="18">
+</span></pre></div>
+</div>
+</div>
+<p>This tells Django: “<code class="docutils literal notranslate"><span class="pre">Choice</span></code> objects are edited on the <code class="docutils literal notranslate"><span class="pre">Question</span></code> admin page. By
+default, provide enough fields for 3 choices.”</p>
+<p>Load the “Add question” page to see how that looks:</p>
+<img alt="Add question page now has choices on it" src="./Writing your first Django app, part 7 _ Django documentation _ Django_files/admin10t.png">
+<p>It <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="20">works like this</span>: There are <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="19">three slots for related Choices</span> – as specified
+by <code class="docutils literal notranslate"><span class="pre">extra</span></code> – and each time you come back to the “Change” page for an
+already-created object, you get another three extra slots.</p>
+<p>At the end of the three current slots you will find an “Add another Choice”
+link.  If you click on it, a new slot will be added. If you want to remove the
+added slot, you can click on the X to the top right of the added slot. This
+image shows an added slot:</p>
+<img alt="Additional slot added dynamically" src="./Writing your first Django app, part 7 _ Django documentation _ Django_files/admin14t.png">
+<p><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="21">One small problem, though. It takes a lot of screen space</span> to display all the
+fields for entering related <code class="docutils literal notranslate"><span class="pre">Choice</span></code> objects. For that reason, Django offers a
+tabular way of displaying inline related objects. To use it, <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="22">change the
+</span><code class="docutils literal notranslate"><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="22">ChoiceInline</span></span></code><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="22"> declaration</span> to read:</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">polls/admin.py</span><a class="headerlink" href="https://docs.djangoproject.com/en/3.2/intro/tutorial07/#id5" title="Permalink to this code">¶</a><span class="btn-clipboard" title="Copy this code"><i class="icon icon-clipboard"></i></span></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="23">ChoiceInline</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="23">(</span></span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="23">admin</span></span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="23">.</span></span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="23">TabularInline</span></span><span class="p">):</span>
+    <span class="c1">#...</span>
+</pre></div>
+</div>
+</div>
+<p><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="24">With that </span><code class="docutils literal notranslate"><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="24">TabularInline</span></span></code><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="24"> (instead of </span><code class="docutils literal notranslate"><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="24">StackedInline</span></span></code><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="24">), the
+related objects are displayed in a more compact, table-based format:</span></p><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="24">
+</span><img alt="Add question page now has more compact choices" src="./Writing your first Django app, part 7 _ Django documentation _ Django_files/admin11t.png">
+<p>Note that there is an extra “Delete?” column that allows removing rows added
+using the “Add Another Choice” button and rows that have already been saved.</p>
+</div>
+<div class="section" id="s-customize-the-admin-change-list">
+<span id="customize-the-admin-change-list"></span><h2><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="25">Customize the admin change list</span><a class="headerlink" href="https://docs.djangoproject.com/en/3.2/intro/tutorial07/#customize-the-admin-change-list" title="Permalink to this headline">¶</a></h2>
+<p>Now that the Question admin page is looking good, let’s make <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="26">some tweaks</span> to the
+“change list” page – the one that displays all the questions in the system.</p>
+<p>Here’s what it looks like at this point:</p>
+<img alt="Polls change list page" src="./Writing your first Django app, part 7 _ Django documentation _ Django_files/admin04t.png">
+<p>By default, Django displays the <code class="docutils literal notranslate"><span class="pre">str()</span></code> of each object. But sometimes it’d be
+more helpful if we could display individual fields. To do that, <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="29">use the
+</span><a class="reference internal" href="https://docs.djangoproject.com/en/3.2/ref/contrib/admin/#django.contrib.admin.ModelAdmin.list_display" title="django.contrib.admin.ModelAdmin.list_display"><code class="xref py py-attr docutils literal notranslate"><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="29">list_display</span></span></code></a> admin option, which is a
+tuple of field names to display, as columns, on the <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="27">change</span> list page for the
+object:</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">polls/admin.py</span><a class="headerlink" href="https://docs.djangoproject.com/en/3.2/intro/tutorial07/#id6" title="Permalink to this code">¶</a><span class="btn-clipboard" title="Copy this code"><i class="icon icon-clipboard"></i></span></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">QuestionAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="c1"># ...</span>
+    <span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="28">list_display</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="28"> </span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="28">=</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="28"> </span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="28">(</span></span><span class="s1"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="28">'question_text'</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="28">,</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="28"> </span><span class="s1"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="28">'pub_date'</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="28">)</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="28">
+</span></pre></div>
+</div>
+</div>
+<p>For good measure, let’s <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="30">also include the </span><code class="docutils literal notranslate"><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="30">was_published_recently()</span></span></code> method
+from <a class="reference internal" href="https://docs.djangoproject.com/en/3.2/intro/tutorial02/"><span class="doc">Tutorial 2</span></a>:</p>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">polls/admin.py</span><a class="headerlink" href="https://docs.djangoproject.com/en/3.2/intro/tutorial07/#id7" title="Permalink to this code">¶</a><span class="btn-clipboard" title="Copy this code"><i class="icon icon-clipboard"></i></span></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">QuestionAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+    <span class="c1"># ...</span>
+    <span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="31">list_display</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="31"> </span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="31">=</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="31"> </span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="31">(</span></span><span class="s1"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="31">'question_text'</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="31">,</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="31"> </span><span class="s1"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="31">'pub_date'</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="31">,</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="31"> </span><span class="s1"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="31">'was_published_recently'</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="31">)</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="31">
+</span></pre></div>
+</div>
+</div>
+<p>Now the question change list page looks like this:</p>
+<img alt="Polls change list page, updated" src="./Writing your first Django app, part 7 _ Django documentation _ Django_files/admin12t.png">
+<p>You can click on the column headers to sort by those values – except in the
+case of the <code class="docutils literal notranslate"><span class="pre">was_published_recently</span></code> header, because sorting by the output
+of an arbitrary method is not supported. Also note that the column header for
+<code class="docutils literal notranslate"><span class="pre">was_published_recently</span></code> is, by default, the name of the method (with
+underscores replaced with spaces), and that each line contains the string
+representation of the output.</p>
+<p>You can improve that by<span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="33"> using the </span><a class="reference internal" href="https://docs.djangoproject.com/en/3.2/ref/contrib/admin/#django.contrib.admin.display" title="django.contrib.admin.display"><code class="xref py py-func docutils literal notranslate"><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="33">display(</span>)</span></code></a>
+decorator on that method (in <code class="file docutils literal notranslate"><span class="pre">polls/models.py</span></code>),<span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="32"> as follows</span>:</p>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">polls/models.py</span><a class="headerlink" href="https://docs.djangoproject.com/en/3.2/intro/tutorial07/#id8" title="Permalink to this code">¶</a><span class="btn-clipboard" title="Copy this code"><i class="icon icon-clipboard"></i></span></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">from</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34"> </span><span class="nn"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">django.contrib</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34"> </span><span class="kn"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">import</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34"> </span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">admin</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">
+
+</span><span class="k"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">class</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34"> </span><span class="nc"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">Question</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">(</span></span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">models</span></span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">.</span></span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">Model</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">):</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">
+    </span><span class="c1"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34"># ...</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">
+    </span><span class="nd"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">@admin</span></span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">.</span></span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">display</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">(</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">
+        </span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">boolean</span></span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">=</span></span><span class="kc"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">True</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">,</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">
+        </span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">ordering</span></span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">=</span></span><span class="s1"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">'pub_date'</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">,</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">
+        </span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">description</span></span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">=</span></span><span class="s1"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">'Published recently?'</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">,</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">
+    </span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">)</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">
+    </span><span class="k"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">def</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34"> </span><span class="nf"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">was_published_recently</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">(</span></span><span class="bp"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">self</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">):</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">
+        </span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">now</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34"> </span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">=</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34"> </span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">timezone</span></span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">.</span></span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">now</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">()</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">
+        </span><span class="k"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">return</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34"> </span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">now</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34"> </span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">-</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34"> </span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">datetime</span></span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">.</span></span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">timedelta</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">(</span></span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">days</span></span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">=</span></span><span class="mi"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">1</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">)</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34"> </span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">&lt;=</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34"> </span><span class="bp"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">self</span></span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">.</span></span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">pub_date</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34"> </span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">&lt;=</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34"> </span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">now</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="34">
+</span></pre></div>
+</div>
+</div>
+<p>For more information on the properties configurable via the decorator, see
+<a class="reference internal" href="https://docs.djangoproject.com/en/3.2/ref/contrib/admin/#django.contrib.admin.ModelAdmin.list_display" title="django.contrib.admin.ModelAdmin.list_display"><code class="xref py py-attr docutils literal notranslate"><span class="pre">list_display</span></code></a>.</p>
+<p>Edit your <code class="file docutils literal notranslate"><span class="pre">polls/admin.py</span></code> file again and add an improvement to the
+<code class="docutils literal notranslate"><span class="pre">Question</span></code> change list page: filters using the
+<a class="reference internal" href="https://docs.djangoproject.com/en/3.2/ref/contrib/admin/#django.contrib.admin.ModelAdmin.list_filter" title="django.contrib.admin.ModelAdmin.list_filter"><code class="xref py py-attr docutils literal notranslate"><span class="pre">list_filter</span></code></a>. <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="36">Add the following line to
+</span><code class="docutils literal notranslate"><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="36">QuestionAdmin</span></span></code><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="36">:</span></p><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="36">
+</span><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="35">list_filter</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="35"> </span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="35">=</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="35"> </span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="35">[</span></span><span class="s1"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="35">'pub_date'</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="35">]</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="35">
+</span></pre></div>
+</div>
+<p>That adds a “Filter” sidebar that lets people filter the change list by the
+<code class="docutils literal notranslate"><span class="pre">pub_date</span></code> field:</p>
+<img alt="Polls change list page, updated" src="./Writing your first Django app, part 7 _ Django documentation _ Django_files/admin13t.png">
+<p>The type of filter displayed depends on the type of field you’re filtering on.
+Because <code class="docutils literal notranslate"><span class="pre">pub_date</span></code> is a <a class="reference internal" href="https://docs.djangoproject.com/en/3.2/ref/models/fields/#django.db.models.DateTimeField" title="django.db.models.DateTimeField"><code class="xref py py-class docutils literal notranslate"><span class="pre">DateTimeField</span></code></a>, Django
+knows to give appropriate filter options: “Any date”, “Today”, “Past 7 days”,
+“This month”, “This year”.</p>
+<p>This is shaping up well. Let’s <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="37">add some search capability</span>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="38">search_fields</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="38"> </span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="38">=</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="38"> </span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="38">[</span></span><span class="s1"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="38">'question_text'</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="38">]</span></span>
+</pre></div>
+</div>
+<p><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="39">That adds a search box at the top of the change list</span>. When somebody enters
+search terms, Django will search the <code class="docutils literal notranslate"><span class="pre">question_text</span></code> field. You can use as many
+fields as you’d like – although because it uses a <code class="docutils literal notranslate"><span class="pre">LIKE</span></code> query behind the
+scenes, limiting the number of search fields to a reasonable number will make
+it easier for your database to do the search.</p>
+<p>Now’s also a good time to note that change lists give you free pagination. The
+default is to display 100 items per page. <a class="reference internal" href="https://docs.djangoproject.com/en/3.2/ref/contrib/admin/#django.contrib.admin.ModelAdmin.list_per_page" title="django.contrib.admin.ModelAdmin.list_per_page"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Change</span> <span class="pre">list</span> <span class="pre">pagination</span></code></a>, <a class="reference internal" href="https://docs.djangoproject.com/en/3.2/ref/contrib/admin/#django.contrib.admin.ModelAdmin.search_fields" title="django.contrib.admin.ModelAdmin.search_fields"><code class="xref py py-attr docutils literal notranslate"><span class="pre">search</span> <span class="pre">boxes</span></code></a>, <a class="reference internal" href="https://docs.djangoproject.com/en/3.2/ref/contrib/admin/#django.contrib.admin.ModelAdmin.list_filter" title="django.contrib.admin.ModelAdmin.list_filter"><code class="xref py py-attr docutils literal notranslate"><span class="pre">filters</span></code></a>, <a class="reference internal" href="https://docs.djangoproject.com/en/3.2/ref/contrib/admin/#django.contrib.admin.ModelAdmin.date_hierarchy" title="django.contrib.admin.ModelAdmin.date_hierarchy"><code class="xref py py-attr docutils literal notranslate"><span class="pre">date-hierarchies</span></code></a>, and
+<a class="reference internal" href="https://docs.djangoproject.com/en/3.2/ref/contrib/admin/#django.contrib.admin.ModelAdmin.list_display" title="django.contrib.admin.ModelAdmin.list_display"><code class="xref py py-attr docutils literal notranslate"><span class="pre">column-header-ordering</span></code></a>
+all work together like you think they should.</p>
+</div>
+<div class="section" id="s-customize-the-admin-look-and-feel">
+<span id="customize-the-admin-look-and-feel"></span><h2><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="40">Customize the admin look and feel</span><a class="headerlink" href="https://docs.djangoproject.com/en/3.2/intro/tutorial07/#customize-the-admin-look-and-feel" title="Permalink to this headline">¶</a></h2>
+<p>Clearly, having “Django administration” at the top of each admin page is
+ridiculous. It’s just placeholder text.</p>
+<p>You can change it, though, using Django’s template system. The Django admin is
+powered by Django itself, and its interfaces use Django’s own template system.</p>
+<div class="section" id="s-customizing-your-project-s-templates">
+<span id="s-ref-customizing-your-projects-templates"></span><span id="customizing-your-project-s-templates"></span><span id="ref-customizing-your-projects-templates"></span><h3><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="41">Customizing your </span><em><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="41">project’s</span></em><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="41"> templates</span><a class="headerlink" href="https://docs.djangoproject.com/en/3.2/intro/tutorial07/#customizing-your-project-s-templates" title="Permalink to this headline">¶</a></h3>
+<p><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="42">Create a </span><code class="docutils literal notranslate"><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="42">templates</span></span></code><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="42"> directory in your project directory (the one that
+contains </span><code class="docutils literal notranslate"><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="42">manage.py</span></span></code><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="42">).</span> Templates can live anywhere on your filesystem that
+Django can access. (Django runs as whatever user your server runs.) However,
+keeping your templates within the project is a good convention to follow.</p>
+<p><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="43">Open your settings file (</span><code class="file docutils literal notranslate"><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="43">mysite/settings.py</span></span></code>, remember) and <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="44">add a
+</span><a class="reference internal" href="https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting-TEMPLATES-DIRS"><code class="xref std std-setting docutils literal notranslate"><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="44">DIRS</span></span></code></a><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="44"> option in the </span><a class="reference internal" href="https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting-TEMPLATES"><code class="xref std std-setting docutils literal notranslate"><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="44">TEMPLATES</span></span></code></a><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="44"> setting:</span></p><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="44">
+</span><div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-text">mysite/settings.py</span><a class="headerlink" href="https://docs.djangoproject.com/en/3.2/intro/tutorial07/#id9" title="Permalink to this code">¶</a><span class="btn-clipboard" title="Copy this code"><i class="icon icon-clipboard"></i></span></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="49">TEMPLATES</span></span></span></span><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="49"> </span></span></span><span class="o"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="49">=</span></span></span></span><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="49"> </span></span></span><span class="p"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="49">[</span></span></span></span><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="49">
+    </span></span></span><span class="p"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="49">{</span></span></span></span><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="49">
+        </span></span></span><span class="s1"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="49">'BACKEND'</span></span></span></span><span class="p"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="49">:</span></span></span></span><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="49"> </span></span></span><span class="s1"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="49">'django.template.backends.django.DjangoTemplates'</span></span></span></span><span class="p"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="49">,</span></span></span></span><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="49">
+</span>        </span></span><span class="s1"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46">'<span class="highlighter--highlighted" style="background-color: lime;" data-highlight-id="50">DIRS'</span></span></span></span><span class="p"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: lime;" data-highlight-id="50">:</span></span></span></span><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: lime;" data-highlight-id="50"> </span></span></span><span class="p"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: lime;" data-highlight-id="50">[</span></span></span></span><span class="n"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: lime;" data-highlight-id="50">BASE_DIR</span></span></span></span><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: lime;" data-highlight-id="50"> </span></span></span><span class="o"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: lime;" data-highlight-id="50">/</span></span></span></span><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: lime;" data-highlight-id="50"> </span></span></span><span class="s1"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: lime;" data-highlight-id="50">'templates'</span></span></span></span><span class="p"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: lime;" data-highlight-id="50">],</span></span></span></span><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46">
+     <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">   </span></span></span><span class="s1"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">'APP_DIRS'</span></span></span></span><span class="p"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">:</span></span></span></span><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48"> </span></span></span><span class="kc"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">True</span></span></span></span><span class="p"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">,</span></span></span></span><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">
+        </span></span></span><span class="s1"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">'OPTIONS'</span></span></span></span><span class="p"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">:</span></span></span></span><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48"> </span></span></span><span class="p"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">{</span></span></span></span><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">
+            </span></span></span><span class="s1"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">'context_processors'</span></span></span></span><span class="p"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">:</span></span></span></span><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48"> </span></span></span><span class="p"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">[</span></span></span></span><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">
+                </span></span></span><span class="s1"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">'django.template.context_processors.debug'</span></span></span></span><span class="p"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">,</span></span></span></span><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">
+                </span></span></span><span class="s1"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">'django.template.context_processors.request'</span></span></span></span><span class="p"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">,</span></span></span></span><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">
+                </span></span></span><span class="s1"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">'django.contrib.auth.context_processors.auth'</span></span></span></span><span class="p"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">,</span></span></span></span><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">
+                </span></span></span><span class="s1"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">'django.contrib.messages.context_processors.messages'</span></span></span></span><span class="p"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">,</span></span></span></span><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">
+            </span></span></span><span class="p"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">],</span></span></span></span><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">
+        </span></span></span><span class="p"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">},</span></span></span></span><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="46"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">
+</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">    </span></span><span class="p"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">},</span></span></span><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">
+</span></span><span class="p"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="48">]</span></span></span><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45">
+</span></pre></div><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45">
+</span></div><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45">
+</span></div><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45">
+</span><p><a class="reference internal" href="https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting-TEMPLATES-DIRS"><code class="xref std std-setting docutils literal notranslate"><span class="pre"><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="52">DIRS</span></span></span></code></a><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="52"> is</span> a<span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="51"> list of </span>filesystem <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="53">directories </span>to <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="54">check
+</span>when loading <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="55">Django templates</span>; it’s a search path.</span></p><span class="highlighter--deleted" style="background-color: inherit;" data-highlight-id="45">
+</span><div class="admonition-organizing-templates admonition">
+<p class="first admonition-title">Organizing templates</p>
+<p class="last">Just like the static files, we <em>could</em> have all our templates together, in
+one big templates directory, and it would work perfectly well. However,
+templates that belong to a particular application should be placed in that
+application’s template directory (e.g. <code class="docutils literal notranslate"><span class="pre">polls/templates</span></code>) rather than the
+project’s (<code class="docutils literal notranslate"><span class="pre">templates</span></code>). We’ll discuss in more detail in the
+<a class="reference internal" href="https://docs.djangoproject.com/en/3.2/intro/reusable-apps/"><span class="doc">reusable apps tutorial</span></a> <em>why</em> we do this.</p>
+</div>
+<p>Now <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="56">create a directory called </span><code class="docutils literal notranslate"><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="56">admin</span></span></code> <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="58">inside </span><code class="docutils literal notranslate"><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="57">templates</span></span></code>, and <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="59">copy the
+template </span><code class="docutils literal notranslate"><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="59">admin/base_site.html</span></span></code> from <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="60">within the default Django admin
+template directory</span> <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="61">in the source code of Django itself</span>
+(<code class="docutils literal notranslate"><span class="pre">django/contrib/admin/templates</span></code>) into that directory.</p>
+<div class="admonition-where-are-the-django-source-files admonition">
+<p class="first admonition-title"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="62">Where are the Django source files</span>?</p>
+<p>If you have difficulty finding where the Django source files are located
+on your system, run the following command:</p>
+<div class="console-block" id="console-block-0">
+<input class="c-tab-unix" id="c-tab-0-unix" type="radio" name="console-0" checked="">
+<label for="c-tab-0-unix" title="Linux/macOS">/</label>
+<input class="c-tab-win" id="c-tab-0-win" type="radio" name="console-0">
+<label for="c-tab-0-win" title="Windows"></label>
+<section class="c-content-unix" id="c-content-0-unix">
+<div class="last highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="63">python -c </span><span class="s2"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="63">"import django; print(django.__path__)"</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="63">
+</span></pre></div>
+</div>
+</section>
+<section class="c-content-win" id="c-content-0-win">
+<div class="highlight"><pre><span></span><span class="gp">...\&gt;</span> py -c <span class="s2">"import django; print(django.__path__)"</span>
+</pre></div>
+</section>
+</div>
+</div>
+<p><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="64">Then, edit the file and replace
+</span><code class="docutils literal notranslate"><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="65">{{</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="65"> </span><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="65">site_header|default:_('Django</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="65"> </span><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="65">administration')</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="65"> </span><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="65">}}</span></span></code><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="65"> </span>(<span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="67">including the curly
+braces</span>) <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="66">with your own site’s name</span> as you see fit. You should <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="68">end up with
+a section of code like</span>:</p>
+<div class="highlight-html+django notranslate"><div class="highlight"><pre><span></span><span class="cp"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69">{%</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69"> </span><span class="k"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69">block</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69"> </span><span class="nv"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69">branding</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69"> </span><span class="cp"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69">%}</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69">
+</span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69">&lt;</span></span><span class="nt"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69">h1</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69"> </span><span class="na"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69">id</span></span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69">=</span></span><span class="s"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69">"site-name"</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69">&gt;&lt;</span></span><span class="nt"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69">a</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69"> </span><span class="na"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69">href</span></span><span class="o"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69">=</span></span><span class="s"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69">"</span></span><span class="cp"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69">{%</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69"> </span><span class="k"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69">url</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69"> </span><span class="s1"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69">'admin:index'</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69"> </span><span class="cp"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69">%}</span></span><span class="s"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69">"</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69">&gt;</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69">Polls Administration</span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69">&lt;/</span></span><span class="nt"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69">a</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69">&gt;&lt;/</span></span><span class="nt"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69">h1</span></span><span class="p"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69">&gt;</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69">
+</span><span class="cp"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69">{%</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69"> </span><span class="k"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69">endblock</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69"> </span><span class="cp"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="69">%</span>}</span>
+</pre></div>
+</div>
+<p>We use this approach to teach you how to override templates. <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="70">In an actual
+project</span>, <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="71">you would probably use
+the </span><a class="reference internal" href="https://docs.djangoproject.com/en/3.2/ref/contrib/admin/#django.contrib.admin.AdminSite.site_header" title="django.contrib.admin.AdminSite.site_header"><code class="xref py py-attr docutils literal notranslate"><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="71">django.contrib.admin.AdminSite.site_header</span></span></code></a><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="71"> attribute to more easily
+make this particular customization</span>.</p>
+<p><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="72">This template file contains lots of text like</span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="73"> </span><code class="docutils literal notranslate"><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="73">{%</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="73"> </span><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="73">block</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="73"> </span><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="73">branding</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="73"> </span><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="73">%}</span></span></code><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="73">
+and </span><code class="docutils literal notranslate"><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="73">{{</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="73"> </span><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="73">title</span></span><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="73"> </span><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="73">}}</span></span></code><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="73">. The </span><code class="docutils literal notranslate"><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="73">{%</span></span></code><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="73"> and </span><code class="docutils literal notranslate"><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="73">{{</span></span></code><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="73"> tags are part of Django’s
+template language</span>. <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="74">When Django renders </span><code class="docutils literal notranslate"><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="74">admin/base_site.html</span></span></code>, <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="75">this
+template language will be evaluated to produce the final HTML page</span>, just like
+we saw in <a class="reference internal" href="https://docs.djangoproject.com/en/3.2/intro/tutorial03/"><span class="doc">Tutorial 3</span></a>.</p>
+<p>Note that any of <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="76">Django’s default admin templates can be overridden</span>. To
+override a template, <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="77">do the same thing you did with </span><code class="docutils literal notranslate"><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="77">base_site.html</span></span></code> – copy
+it from the default directory into your custom directory, and make changes.</p>
+</div>
+<div class="section" id="s-customizing-your-application-s-templates">
+<span id="customizing-your-application-s-templates"></span><h3><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="78">Customizing your </span><em><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="78">application’s</span></em><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="78"> templates</span><a class="headerlink" href="https://docs.djangoproject.com/en/3.2/intro/tutorial07/#customizing-your-application-s-templates" title="Permalink to this headline">¶</a></h3>
+<p>Astute readers will ask: But if <a class="reference internal" href="https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting-TEMPLATES-DIRS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">DIRS</span></code></a> was empty by
+default, how was Django finding the default admin templates? The answer is
+that, since <a class="reference internal" href="https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting-TEMPLATES-APP_DIRS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">APP_DIRS</span></code></a> is set to <code class="docutils literal notranslate"><span class="pre">True</span></code>,
+Django automatically looks for a <code class="docutils literal notranslate"><span class="pre">templates/</span></code> subdirectory within each
+application package, for use as a fallback (don’t forget that
+<code class="docutils literal notranslate"><span class="pre">django.contrib.admin</span></code> is an application).</p>
+<p>Our poll application is not very complex and doesn’t need custom admin
+templates. But if it grew more sophisticated and required modification of
+Django’s standard admin templates for some of its functionality, it would be
+more sensible to modify the <em>application’s</em> templates, rather than those in the
+<em>project</em>. That way, you could include the polls application in any new project
+and be assured that it would find the custom templates it needed.</p>
+<p>See the <a class="reference internal" href="https://docs.djangoproject.com/en/3.2/topics/templates/#template-loading"><span class="std std-ref">template loading documentation</span></a> for more
+information about how Django finds its templates.</p>
+</div>
+</div>
+<div class="section" id="s-customize-the-admin-index-page">
+<span id="customize-the-admin-index-page"></span><h2><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="79">Customize the admin index page</span><a class="headerlink" href="https://docs.djangoproject.com/en/3.2/intro/tutorial07/#customize-the-admin-index-page" title="Permalink to this headline">¶</a></h2>
+<p>On a similar note, you might want to customize the look and feel of the Django
+admin index page.</p>
+<p>By default, it displays all the apps in <a class="reference internal" href="https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting-INSTALLED_APPS"><code class="xref std std-setting docutils literal notranslate"><span class="pre">INSTALLED_APPS</span></code></a> that have been
+registered with the admin application, in alphabetical order. You may want to
+make significant changes to the layout. After all, <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="80">the index is probably the
+most important page of the admin</span>, and <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="81">it should be easy to use.</span></p><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="81">
+</span><p>The <span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="82">template to customize is </span><code class="docutils literal notranslate"><span class="pre"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="82">admin/index.html</span></span></code>. (<span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="83">Do the same</span> as with
+<code class="docutils literal notranslate"><span class="pre">admin/base_site.html</span></code> in the previous section – copy it from the default
+directory to your custom template directory). Edit the file, and you’ll see it
+uses a template variable called <code class="docutils literal notranslate"><span class="pre">app_list</span></code>. That variable contains every
+installed Django app. Instead of using that, you can hard-code links to
+object-specific admin pages in whatever way you think is best.</p>
+</div>
+<div class="section" id="s-what-s-next">
+<span id="what-s-next"></span><h2><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="84">What’s next</span>?<a class="headerlink" href="https://docs.djangoproject.com/en/3.2/intro/tutorial07/#what-s-next" title="Permalink to this headline">¶</a></h2>
+<p>The beginner tutorial ends here. In the meantime, you might want to check out
+<span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="85">some pointers on </span><a class="reference internal" href="https://docs.djangoproject.com/en/3.2/intro/whatsnext/"><span class="doc"><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="85">where to go from here</span></span></a><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="85">.</span></p><span class="highlighter--highlighted" style="background-color: yellow;" data-highlight-id="85">
+</span><p><span class="highlighter--highlighted" style="background-color: lime;" data-highlight-id="86">If </span>you are <span class="highlighter--highlighted" style="background-color: lime;" data-highlight-id="87">familiar with Python packaging</span> and interested in learning how to
+turn polls into a “reusable app”, <span class="highlighter--highlighted" style="background-color: lime;" data-highlight-id="88">check out </span><a class="reference internal" href="https://docs.djangoproject.com/en/3.2/intro/reusable-apps/"><span class="doc"><span class="highlighter--highlighted" style="background-color: lime;" data-highlight-id="88">Advanced tutorial: How to
+write reusable apps</span></span></a><span class="highlighter--highlighted" style="background-color: lime;" data-highlight-id="88">.</span></p>
+</div>
+</div>
+
+</div>
+
+
+
+<div class="browse-horizontal">
+  
+  <div class="left"><a href="https://docs.djangoproject.com/en/3.2/intro/tutorial06/"><i class="icon icon-chevron-left"></i> Writing your first Django app, part 6</a></div>
+  
+  
+  <div class="right"><a href="https://docs.djangoproject.com/en/3.2/intro/reusable-apps/">Advanced tutorial: How to write reusable apps <i class="icon icon-chevron-right"></i></a></div>
+  
+</div>
+
+
+
+        <a href="https://docs.djangoproject.com/en/3.2/intro/tutorial07/#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
+      </div>
+
+      
+<h1 class="visuallyhidden">Additional Information</h1>
+<div role="complementary">
+
+  
+
+
+  <div class="fundraising-sidebar">
+    <h2>Support Django!</h2>
+
+    <div class="small-heart">
+      <img src="./Writing your first Django app, part 7 _ Django documentation _ Django_files/fundraising-heart.cd6bb84ffd33.svg" alt="Support Django!">
+    </div>
+
+    <div class="small-cta">
+      <ul class="list-links-small">
+        <li><a href="https://www.djangoproject.com/fundraising/">
+          MattN donated to the Django Software Foundation to
+          support Django development. Donate today!
+        </a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  
+    <h2>Contents</h2>
+    
+    <ul>
+<li><a class="reference internal" href="https://docs.djangoproject.com/en/3.2/intro/tutorial07/#">Writing your first Django app, part 7</a><ul>
+<li><a class="reference internal" href="https://docs.djangoproject.com/en/3.2/intro/tutorial07/#customize-the-admin-form">Customize the admin form</a></li>
+<li><a class="reference internal" href="https://docs.djangoproject.com/en/3.2/intro/tutorial07/#adding-related-objects">Adding related objects</a></li>
+<li><a class="reference internal" href="https://docs.djangoproject.com/en/3.2/intro/tutorial07/#customize-the-admin-change-list">Customize the admin change list</a></li>
+<li><a class="reference internal" href="https://docs.djangoproject.com/en/3.2/intro/tutorial07/#customize-the-admin-look-and-feel">Customize the admin look and feel</a><ul>
+<li><a class="reference internal" href="https://docs.djangoproject.com/en/3.2/intro/tutorial07/#customizing-your-project-s-templates">Customizing your <em>project’s</em> templates</a></li>
+<li><a class="reference internal" href="https://docs.djangoproject.com/en/3.2/intro/tutorial07/#customizing-your-application-s-templates">Customizing your <em>application’s</em> templates</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="https://docs.djangoproject.com/en/3.2/intro/tutorial07/#customize-the-admin-index-page">Customize the admin index page</a></li>
+<li><a class="reference internal" href="https://docs.djangoproject.com/en/3.2/intro/tutorial07/#what-s-next">What’s next?</a></li>
+</ul>
+</li>
+</ul>
+
+    
+  
+
+  
+  <h2>Browse</h2>
+  <ul>
+    
+    
+    <li>Prev: <a href="https://docs.djangoproject.com/en/3.2/intro/tutorial06/">Writing your first Django app, part 6</a></li>
+    
+    
+    <li>Next: <a href="https://docs.djangoproject.com/en/3.2/intro/reusable-apps/">Advanced tutorial: How to write reusable apps</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/3.2/contents/">Table of contents</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/3.2/genindex/">General Index</a></li>
+    
+    <li><a href="https://docs.djangoproject.com/en/3.2/py-modindex/">Python Module Index</a></li>
+    
+    
+  </ul>
+  
+
+  
+  <h2>You are here:</h2>
+  <ul>
+    <li>
+      <a href="https://docs.djangoproject.com/en/3.2/">Django 3.2 documentation</a>
+      
+      <ul><li><a href="https://docs.djangoproject.com/en/3.2/intro/">Getting started</a>
+      
+      <ul><li>Writing your first Django app, part 7</li></ul>
+      </li></ul>
+    </li>
+  </ul>
+  
+
+  
+  <h2 id="getting-help-sidebar">Getting help</h2>
+  <dl class="list-links">
+    <dt><a href="https://docs.djangoproject.com/en/3.2/faq/">FAQ</a></dt>
+    <dd>Try the FAQ — it's got answers to many common questions.</dd>
+
+    <dt><a href="https://docs.djangoproject.com/en/stable/genindex/">Index</a>, <a href="https://docs.djangoproject.com/en/stable/py-modindex/">Module Index</a>, or <a href="https://docs.djangoproject.com/en/stable/contents/">Table of Contents</a></dt>
+    <dd>Handy when looking for specific information.</dd>
+
+    <dt><a href="https://groups.google.com/group/django-users/">django-users mailing list</a></dt>
+    <dd>Search for information in the archives of the django-users mailing list, or post a question.</dd>
+
+    <dt><a href="irc://irc.freenode.net/django">#django IRC channel</a></dt>
+    <dd>Ask a question in the #django IRC channel, or search the IRC logs to see if it’s been asked before.</dd>
+
+    <dt><a href="https://code.djangoproject.com/">Ticket tracker</a></dt>
+    <dd>Report bugs with Django or Django documentation in our ticket tracker.</dd>
+  </dl>
+  
+
+  
+  <h2>Download:</h2>
+  <p>
+    Offline (Django 3.2):
+    <a href="https://media.djangoproject.com/docs/django-docs-3.2-en.zip">HTML</a> |
+    <a href="https://media.readthedocs.org/pdf/django/3.2.x/django.pdf">PDF</a> |
+    <a href="https://media.readthedocs.org/epub/django/3.2.x/django.epub">ePub</a>
+    <br>
+    <span class="quiet">
+      Provided by <a href="https://readthedocs.org/">Read the Docs</a>.
+    </span>
+  </p>
+  
+</div>
+
+      
+
+    </div>
+
+     
+     
+
+    
+    
+    
+
+    
+      
+<div role="contentinfo">
+  <div class="subfooter">
+    <div class="container">
+      <h1 class="visuallyhidden">Django Links</h1>
+
+      <div class="col learn">
+        <h2>Learn More</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/start/overview/">About Django</a></li>
+          
+          <li><a href="https://www.djangoproject.com/start/">Getting Started with Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/organization/">Team Organization</a></li>
+          <li><a href="https://www.djangoproject.com/foundation/">Django Software Foundation</a></li>
+          <li><a href="https://www.djangoproject.com/conduct/">Code of Conduct</a></li>
+          <li><a href="https://www.djangoproject.com/diversity/">Diversity Statement</a></li>
+        </ul>
+      </div>
+
+      <div class="col involved">
+        <h2>Get Involved</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/community/">Join a Group</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/">Contribute to Django</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/contributing/bugs-and-features/">Submit a Bug</a></li>
+          <li><a href="https://docs.djangoproject.com/en/dev/internals/security/#reporting-security-issues">Report a Security Issue</a></li>
+        </ul>
+      </div>
+
+      <div class="col follow last-child">
+        <h2>Follow Us</h2>
+        <ul>
+          <li><a href="https://github.com/django">GitHub</a></li>
+          <li><a href="https://twitter.com/djangoproject">Twitter</a></li>
+          <li><a href="https://www.djangoproject.com/rss/weblog/">News RSS</a></li>
+          <li><a href="https://groups.google.com/forum/#!forum/django-users">Django Users Mailing List</a></li>
+        </ul>
+      </div>
+
+      <div class="col follow last-child">
+        <h2>Support Us</h2>
+        <ul>
+          <li><a href="https://www.djangoproject.com/fundraising/">Sponsor Django</a></li>
+          <li><a href="https://django.threadless.com/" target="_blank">Official merchandise store</a></li>
+          <li><a href="https://docs.djangoproject.com/foundation/donate/#amazon-smile">Amazon Smile</a></li>
+          <li><a href="https://docs.djangoproject.com/foundation/donate/#benevity-giving">Benevity Workplace Giving Program</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <div class="footer-logo">
+        <a class="logo" href="https://www.djangoproject.com/">Django</a>
+      </div>
+      <ul class="thanks">
+        <li>
+          <span>Hosting by</span> <a class="rackspace" href="https://www.rackspace.com/">Rackspace</a>
+        </li>
+        <li class="design"><span>Design by</span> <a class="threespot" href="https://www.threespot.com/">Threespot</a> <span class="ampersand">&amp;</span> <a class="andrevv" href="http://andrevv.com/">andrevv</a></li>
+      </ul>
+      <p class="copyright">© 2005-2021
+        <a href="https://www.djangoproject.com/foundation/"> Django Software
+        Foundation</a> and individual contributors. Django is a
+        <a href="https://www.djangoproject.com/trademarks/">registered
+        trademark</a> of the Django Software Foundation.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+    
+
+    
+    <script>
+    function extless(input) {
+        return input.replace(/(.*)\.[^.]+$/, '$1');
+    }
+    var require = {
+        shim: {
+            'jquery': [],
+            'jquery.inview': ["jquery"],
+            'jquery.payment': ["jquery"],
+            'jquery.flot': ["jquery"],
+            'jquery.unveil': ["jquery"],
+            'stripe': {
+              exports: 'Stripe'
+            }
+        },
+        paths: {
+            "jquery": extless("https://static.djangoproject.com/js/lib/jquery/dist/jquery.min.87e69028f78d.js"),
+            "jquery.inview": extless("https://static.djangoproject.com/js/lib/jquery.inview/jquery.inview.min.4edba1c65592.js"),
+            "jquery.payment": extless("https://static.djangoproject.com/js/lib/jquery.payment/lib/jquery.payment.e99c05ca79ae.js"),
+            "jquery.unveil": extless("https://static.djangoproject.com/js/lib/unveil/jquery.unveil.min.ac79eb277093.js"),
+            "jquery.flot": extless("https://static.djangoproject.com/js/lib/jquery-flot/jquery.flot.min.9964206e9d7f.js"),
+            "clipboard": extless("https://static.djangoproject.com/js/lib/clipboard/dist/clipboard.min.bd70fd596a23.js"),
+            "mod/floating-warning": extless("https://static.djangoproject.com/js/mod/floating-warning.a21b2abd2884.js"),
+            "mod/list-collapsing": extless("https://static.djangoproject.com/js/mod/list-collapsing.c1a08d3ef9e9.js"),
+            "mod/list-feature": extless("https://static.djangoproject.com/js/mod/list-feature.73529480f25b.js"),
+            "mod/mobile-menu": extless("https://static.djangoproject.com/js/mod/mobile-menu.841726ee903a.js"),
+            "mod/version-switcher": extless("https://static.djangoproject.com/js/mod/version-switcher.c28bb83972bb.js"),
+            "mod/search-key": extless("https://static.djangoproject.com/js/mod/search-key.f3c0a6fcfedd.js"),
+            "mod/stripe-change-card": extless("https://static.djangoproject.com/js/mod/stripe-change-card.682c710317a8.js"),
+            "mod/console-tabs": extless("https://static.djangoproject.com/js/mod/console-tabs.70ce882faaf3.js"),
+            "stripe-checkout": "https://checkout.stripe.com/checkout",
+            "stripe": "https://js.stripe.com/v3/?" // ? needed due to require.js
+        }
+    };
+    </script>
+    <script data-main="https://static.djangoproject.com/js/main.2f2c378dba28.js" src="./Writing your first Django app, part 7 _ Django documentation _ Django_files/require.177879fbe7dd.js.download"></script>
+    
+
+
+
+  
+
+<div id="highlighter--hover-tools" style="top: 283.391px; left: 331px; display: none;">
+    <div id="highlighter--hover-tools--container">
+        <div class="highlighter--icon highlighter--icon-copy" title="Copy"></div>
+        <div class="highlighter--separator"></div>
+        <div class="highlighter--icon highlighter--icon-change-color" title="Change Color"></div>
+        <div class="highlighter--separator"></div>
+        <div class="highlighter--icon highlighter--icon-delete" title="Delete"></div>
+    </div>
+</div></body></html>
